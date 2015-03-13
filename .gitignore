@@ -1,1 +1,6 @@
 *.suo
+*.opensdf
+*.sdf
+*.vcxproj.filters
+UpgradeLog.htm
+Backup
