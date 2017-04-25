@@ -16,7 +16,7 @@ COMPILERFLAGS_PPC = -arch ppc
 COMPILERFLAGS_I386 = -arch i386
 COMPILERFLAGS_X86_64 = -arch x86_64
 COMPILERPPFLAGS = -Wno-ctor-dtor-privacy
-INCLUDE += 
+INCLUDE +=
 INCLUDE_PPC = -isysroot /Developer/SDKs/MacOSX10.5.sdk
 INCLUDE_I386 = -isysroot /Developer/SDKs/MacOSX10.5.sdk
 INCLUDE_X86_64 = -isysroot /Developer/SDKs/MacOSX10.6.sdk
@@ -46,9 +46,12 @@ MODULES_PPC := $(MODULES_PPC:.cpp=.o-ppc)
 MODULES_I386 := $(MODULES_I386:.cpp=.o-i386)
 MODULES_X86_64 := $(MODULES_X86_64:.cpp=.o-x86_64)
 
-PREFIX = /usr/local
-INSTALLDIR = $(PREFIX)/lib
-INCDIR = $(PREFIX)/include
+# General configuration variables:
+DESTDIR ?= /usr/local
+INCDIR ?= $(DESTDIR)/include
+INSTALLDIR ?= $(DESTDIR)/lib
+INSTALLGROUP ?= wheel
+
 
 default: all
 
@@ -104,9 +107,9 @@ $(SHAREDLIB)-x86_64: $(MODULES_X86_64)
 	$(CPP_X86_64) $(CPPFLAGS_X86_64) -c $< -o $@
 
 install:
-	install -d -m 755 -o root -g wheel $(INCDIR) $(INSTALLDIR)
-	install -m 644 -o root -g wheel $(HEADER) $(INCDIR)
-	install -m 644 -o root -g wheel $(SHAREDLIB) $(STATICLIB) $(INSTALLDIR)
+	install -d -m 755 -g $(INSTALLGROUP) $(INCDIR) $(INSTALLDIR)
+	install -m 644 -g $(INSTALLGROUP) $(HEADER) $(INCDIR)
+	install -m 644 -g $(INSTALLGROUP) $(SHAREDLIB) $(STATICLIB) $(INSTALLDIR)
 	ranlib -sf $(INSTALLDIR)/$(STATICLIB)
 	ln -sf $(SHAREDLIB) $(INSTALLDIR)/$(LIBNAME)
 

@@ -7,6 +7,7 @@ include Makefile.srcs
 DESTDIR ?= /
 INCDIR ?= $(DESTDIR)/usr/include
 INSTALLDIR ?= $(DESTDIR)/usr/lib
+INSTALLGROUP ?= root
 
 # Converts cr/lf to just lf
 DOS2UNIX = dos2unix
@@ -70,11 +71,11 @@ $(SHAREDLIB): $(MODULES)
 
 install:
 	install -d $(INCDIR) $(INSTALLDIR)
-	install -m 644 -o root -g root $(HEADER) $(INCDIR)
-	install -m 644 -o root -g root $(STATICLIB) $(INSTALLDIR)
-	install -m 755 -o root -g root $(SHAREDLIB) $(INSTALLDIR)
+	install -m 644 -g $(INSTALLGROUP) $(HEADER) $(INCDIR)
+	install -m 644 -g $(INSTALLGROUP) $(STATICLIB) $(INSTALLDIR)
+	install -m 755 -g $(INSTALLGROUP) $(SHAREDLIB) $(INSTALLDIR)
 	ln -sf $(SHAREDLIB) $(INSTALLDIR)/$(VERLIBNAME)
-	ln -sf $(VERLIBNAME) $(INSTALLDIR)/$(LIBNAME)	
+	ln -sf $(VERLIBNAME) $(INSTALLDIR)/$(LIBNAME)
 #	ldconfig
 
 clean:

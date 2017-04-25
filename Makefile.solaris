@@ -56,9 +56,9 @@ $(SHAREDLIB): $(MODULES)
 	$(CC) -s -G -Wl,-soname=$(LIBNAME) -o $@ $(MODULES) $(LIBRARIES)
 
 install:
-	install -m 644 -o root -g root Source/FreeImage.h $(INSTALLDIR)/include
-	install -m 644 -o root -g root $(STATICLIB) $(INSTALLDIR)/lib
-	install -m 755 -o root -g root $(SHAREDLIB) $(INSTALLDIR)/lib
+	install -m 644 -g $(INSTALLGROUP) Source/FreeImage.h $(INSTALLDIR)/include
+	install -m 644 -g $(INSTALLGROUP) $(STATICLIB) $(INSTALLDIR)/lib
+	install -m 755 -g $(INSTALLGROUP) $(SHAREDLIB) $(INSTALLDIR)/lib
 	ln -sf $(SHAREDLIB) $(INSTALLDIR)/lib/$(LIBNAME)
 
 clean:
