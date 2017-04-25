@@ -28,24 +28,24 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <PlatformToolset>v120</PlatformToolset>
-    <CharacterSet>Unicode</CharacterSet>
-    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <PlatformToolset>v120</PlatformToolset>
-    <CharacterSet>Unicode</CharacterSet>
+    <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <PlatformToolset>v120</PlatformToolset>
-    <CharacterSet>Unicode</CharacterSet>
-    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <PlatformToolset>v120</PlatformToolset>
-    <CharacterSet>Unicode</CharacterSet>
+    <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -64,23 +64,23 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
-    <_ProjectFileVersion>12.0.30501.0</_ProjectFileVersion>
+    <_ProjectFileVersion>12.0.21005.1</_ProjectFileVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
-    <IntDir>$(Configuration)\</IntDir>
+    <OutDir>.\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>.\$(Platform)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <OutDir>$(Platform)\$(Configuration)\</OutDir>
-    <IntDir>$(Platform)\$(Configuration)\</IntDir>
+    <OutDir>.\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>.\$(Platform)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
-    <IntDir>$(Configuration)\</IntDir>
+    <OutDir>.\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>.\$(Platform)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <OutDir>$(Platform)\$(Configuration)\</OutDir>
-    <IntDir>$(Platform)\$(Configuration)\</IntDir>
+    <OutDir>.\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>.\$(Platform)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -90,10 +90,12 @@
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-      <PrecompiledHeader />
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <UseUnicodeForAssemblerListing>false</UseUnicodeForAssemblerListing>
     </ClCompile>
+    <Lib />
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <Midl>
@@ -106,15 +108,17 @@
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-      <PrecompiledHeader />
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <UseUnicodeForAssemblerListing>false</UseUnicodeForAssemblerListing>
     </ClCompile>
+    <Lib />
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
-      <Optimization>MaxSpeed</Optimization>
-      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <Optimization>Full</Optimization>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <OmitFramePointers>true</OmitFramePointers>
@@ -124,27 +128,31 @@
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <FunctionLevelLinking>true</FunctionLevelLinking>
-      <PrecompiledHeader />
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DebugInformationFormat>None</DebugInformationFormat>
+      <UseUnicodeForAssemblerListing>false</UseUnicodeForAssemblerListing>
     </ClCompile>
+    <Lib />
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <Midl>
       <TargetEnvironment>X64</TargetEnvironment>
     </Midl>
     <ClCompile>
-      <Optimization>MaxSpeed</Optimization>
+      <Optimization>Full</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <AdditionalIncludeDirectories>./image/sys;./jxrgluelib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;DISABLE_PERF_MEASUREMENT;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
-      <PrecompiledHeader />
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-      <WholeProgramOptimization>false</WholeProgramOptimization>
+      <DebugInformationFormat>None</DebugInformationFormat>
+      <UseUnicodeForAssemblerListing>false</UseUnicodeForAssemblerListing>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
     </ClCompile>
+    <Lib />
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="image\decode\decode.c" />
@@ -172,12 +180,6 @@
     <ClCompile Include="jxrgluelib\JXRMeta.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="common\include\guiddef.h" />
-    <ClInclude Include="common\include\wmsal.h" />
-    <ClInclude Include="common\include\wmspecstring.h" />
-    <ClInclude Include="common\include\wmspecstrings_adt.h" />
-    <ClInclude Include="common\include\wmspecstrings_strict.h" />
-    <ClInclude Include="common\include\wmspecstrings_undef.h" />
     <ClInclude Include="image\decode\decode.h" />
     <ClInclude Include="image\encode\encode.h" />
     <ClInclude Include="image\sys\ansi.h" />
@@ -188,6 +190,12 @@
     <ClInclude Include="image\sys\windowsmediaphoto.h" />
     <ClInclude Include="image\sys\xplatform_image.h" />
     <ClInclude Include="image\x86\x86.h" />
+    <ClInclude Include="common\include\guiddef.h" />
+    <ClInclude Include="common\include\wmsal.h" />
+    <ClInclude Include="common\include\wmspecstring.h" />
+    <ClInclude Include="common\include\wmspecstrings_adt.h" />
+    <ClInclude Include="common\include\wmspecstrings_strict.h" />
+    <ClInclude Include="common\include\wmspecstrings_undef.h" />
     <ClInclude Include="jxrgluelib\JXRGlue.h" />
     <ClInclude Include="jxrgluelib\JXRMeta.h" />
   </ItemGroup>

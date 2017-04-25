@@ -28,24 +28,24 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <PlatformToolset>v120</PlatformToolset>
-    <CharacterSet>Unicode</CharacterSet>
-    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <PlatformToolset>v120</PlatformToolset>
-    <CharacterSet>Unicode</CharacterSet>
+    <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <PlatformToolset>v120</PlatformToolset>
-    <CharacterSet>Unicode</CharacterSet>
-    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <PlatformToolset>v120</PlatformToolset>
-    <CharacterSet>Unicode</CharacterSet>
+    <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -64,23 +64,23 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
-    <_ProjectFileVersion>12.0.30501.0</_ProjectFileVersion>
+    <_ProjectFileVersion>12.0.21005.1</_ProjectFileVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
-    <IntDir>$(Configuration)\</IntDir>
+    <OutDir>.\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>.\$(Platform)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <OutDir>$(Platform)\$(Configuration)\</OutDir>
-    <IntDir>$(Platform)\$(Configuration)\</IntDir>
+    <OutDir>.\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>.\$(Platform)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
-    <IntDir>$(Configuration)\</IntDir>
+    <OutDir>.\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>.\$(Platform)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <OutDir>$(Platform)\$(Configuration)\</OutDir>
-    <IntDir>$(Platform)\$(Configuration)\</IntDir>
+    <OutDir>.\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>.\$(Platform)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -90,14 +90,13 @@
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-      <PrecompiledHeader />
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <CompileAs>Default</CompileAs>
+      <UseUnicodeForAssemblerListing>false</UseUnicodeForAssemblerListing>
     </ClCompile>
-    <Lib>
-      <OutputFile>.\Debug\LibRawLite.lib</OutputFile>
-    </Lib>
+    <Lib />
     <PostBuildEvent>
       <Command />
     </PostBuildEvent>
@@ -114,22 +113,21 @@
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <OpenMPSupport>true</OpenMPSupport>
-      <PrecompiledHeader />
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <CompileAs>Default</CompileAs>
+      <UseUnicodeForAssemblerListing>false</UseUnicodeForAssemblerListing>
     </ClCompile>
-    <Lib>
-      <OutputFile>.\Debug\LibRawLite.lib</OutputFile>
-    </Lib>
+    <Lib />
     <PostBuildEvent>
       <Command />
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
-      <Optimization>MaxSpeed</Optimization>
-      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <Optimization>Full</Optimization>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <OmitFramePointers>true</OmitFramePointers>
@@ -140,21 +138,20 @@
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <OpenMPSupport>false</OpenMPSupport>
-      <PrecompiledHeader />
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <DebugInformationFormat />
+      <DebugInformationFormat>None</DebugInformationFormat>
       <CompileAs>Default</CompileAs>
+      <UseUnicodeForAssemblerListing>false</UseUnicodeForAssemblerListing>
     </ClCompile>
-    <Lib>
-      <OutputFile>.\Release\LibRawLite.lib</OutputFile>
-    </Lib>
+    <Lib />
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <Midl>
       <TargetEnvironment>X64</TargetEnvironment>
     </Midl>
     <ClCompile>
-      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <OmitFramePointers>true</OmitFramePointers>
@@ -165,26 +162,25 @@
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <OpenMPSupport>true</OpenMPSupport>
-      <PrecompiledHeader />
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <DebugInformationFormat />
+      <DebugInformationFormat>None</DebugInformationFormat>
       <CompileAs>Default</CompileAs>
+      <UseUnicodeForAssemblerListing>false</UseUnicodeForAssemblerListing>
+      <Optimization>Full</Optimization>
     </ClCompile>
-    <Lib>
-      <OutputFile>.\Release\LibRawLite.lib</OutputFile>
-    </Lib>
+    <Lib />
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="internal\dcraw_common.cpp" />
     <ClCompile Include="internal\dcraw_fileio.cpp" />
     <ClCompile Include="internal\demosaic_packs.cpp" />
-    <ClCompile Include="src\libraw_cxx.cpp" />
     <ClCompile Include="src\libraw_c_api.cpp" />
+    <ClCompile Include="src\libraw_cxx.cpp" />
     <ClCompile Include="src\libraw_datastream.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="internal\defines.h" />
-    <ClInclude Include="internal\libraw_bytebuffer.h" />
     <ClInclude Include="internal\libraw_internal_funcs.h" />
     <ClInclude Include="internal\var_defines.h" />
     <ClInclude Include="libraw\libraw.h" />

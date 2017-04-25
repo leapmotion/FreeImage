@@ -69,27 +69,31 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
-    <_ProjectFileVersion>12.0.30501.0</_ProjectFileVersion>
+    <_ProjectFileVersion>12.0.21005.1</_ProjectFileVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <OutDir>.\Release\</OutDir>
-    <IntDir>.\Release\</IntDir>
+    <OutDir>.\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>.\$(Platform)\$(Configuration)\</IntDir>
     <LinkIncremental>false</LinkIncremental>
+    <GenerateManifest>false</GenerateManifest>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <OutDir>$(Platform)\$(Configuration)\</OutDir>
-    <IntDir>$(Platform)\$(Configuration)\</IntDir>
+    <OutDir>.\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>.\$(Platform)\$(Configuration)\</IntDir>
     <LinkIncremental>false</LinkIncremental>
+    <GenerateManifest>false</GenerateManifest>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>.\Debug\</OutDir>
-    <IntDir>.\Debug\</IntDir>
-    <LinkIncremental>true</LinkIncremental>
+    <OutDir>.\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>.\$(Platform)\$(Configuration)\</IntDir>
+    <GenerateManifest>false</GenerateManifest>
+    <TargetName>$(ProjectName)d</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <OutDir>$(Configuration)\$(Platform)\</OutDir>
-    <IntDir>$(Configuration)\$(Platform)\</IntDir>
-    <LinkIncremental>true</LinkIncremental>
+    <OutDir>.\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>.\$(Platform)\$(Configuration)\</IntDir>
+    <GenerateManifest>false</GenerateManifest>
+    <TargetName>$(ProjectName)d</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <Midl>
@@ -97,48 +101,51 @@
       <MkTypLibCompatible>true</MkTypLibCompatible>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <TargetEnvironment>Win32</TargetEnvironment>
-      <TypeLibraryName>.\Release/FreeImage.tlb</TypeLibraryName>
+      <TypeLibraryName>$(OutDir)FreeImage.tlb</TypeLibraryName>
       <HeaderFileName />
     </Midl>
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
-      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <OmitFramePointers>true</OmitFramePointers>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>Source;Source\ZLib;Source\DeprecationManager;Source\OpenEXR\Half;Source\OpenEXR\Iex;Source\OpenEXR\IlmImf;Source\OpenEXR\Imath;Source\OpenEXR\IlmThread;Source\LibJXR\jxrgluelib;Source\LibJXR\image\sys;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>Source;Source\ZLib;Source\DeprecationManager;Source\OpenEXR;Source\OpenEXR\Half;Source\OpenEXR\Iex;Source\OpenEXR\IlmImf;Source\OpenEXR\Imath;Source\OpenEXR\IlmThread;Source\LibJXR\jxrgluelib;Source\LibJXR\image\sys;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;OPJ_STATIC;FREEIMAGE_EXPORTS;_CRT_SECURE_NO_DEPRECATE;LIBRAW_NODLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <BufferSecurityCheck>false</BufferSecurityCheck>
-      <PrecompiledHeaderOutputFile>.\Release/FreeImage.pch</PrecompiledHeaderOutputFile>
-      <AssemblerListingLocation>.\Release/</AssemblerListingLocation>
-      <ObjectFileName>.\Release/</ObjectFileName>
-      <ProgramDataBaseFileName>.\Release/</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <CompileAs>Default</CompileAs>
+      <UseUnicodeForAssemblerListing>false</UseUnicodeForAssemblerListing>
+      <StructMemberAlignment>16Bytes</StructMemberAlignment>
+      <DebugInformationFormat>None</DebugInformationFormat>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <Culture>0x0409</Culture>
     </ResourceCompile>
     <Link>
-      <OutputFile>.\Release/FreeImage.dll</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <ProgramDatabaseFile>.\Release/FreeImage.pdb</ProgramDatabaseFile>
       <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
       <DataExecutionPrevention />
-      <ImportLibrary>.\Release/FreeImage.lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
       <Profile>true</Profile>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <IgnoreEmbeddedIDL>true</IgnoreEmbeddedIDL>
+      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies />
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
     </Link>
     <PostBuildEvent>
-      <Command>copy Release\FreeImage.dll Dist
-copy Release\FreeImage.lib Dist
-copy Source\FreeImage.h Dist
+      <Command>mkdir Dist\x32
+copy $(OutDir)$(TargetName).dll Dist\x32
+copy $(OutDir)$(TargetName).lib Dist\x32
+copy Source\FreeImage.h Dist\x32
 </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
@@ -148,49 +155,52 @@ copy Source\FreeImage.h Dist
       <MkTypLibCompatible>true</MkTypLibCompatible>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <TargetEnvironment>X64</TargetEnvironment>
-      <TypeLibraryName>.\Release/FreeImage.tlb</TypeLibraryName>
+      <TypeLibraryName>$(OutDir)FreeImage.tlb</TypeLibraryName>
       <HeaderFileName />
     </Midl>
     <ClCompile>
-      <Optimization>MaxSpeed</Optimization>
-      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <Optimization>Full</Optimization>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <OmitFramePointers>true</OmitFramePointers>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>Source;Source\ZLib;Source\DeprecationManager;Source\OpenEXR\Half;Source\OpenEXR\Iex;Source\OpenEXR\IlmImf;Source\OpenEXR\Imath;Source\OpenEXR\IlmThread;Source\LibJXR\jxrgluelib;Source\LibJXR\image\sys;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>Source;Source\ZLib;Source\DeprecationManager;Source\OpenEXR;Source\OpenEXR\Half;Source\OpenEXR\Iex;Source\OpenEXR\IlmImf;Source\OpenEXR\Imath;Source\OpenEXR\IlmThread;Source\LibJXR\jxrgluelib;Source\LibJXR\image\sys;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;OPJ_STATIC;FREEIMAGE_EXPORTS;_CRT_SECURE_NO_DEPRECATE;LIBRAW_NODLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <OpenMPSupport>true</OpenMPSupport>
-      <PrecompiledHeaderOutputFile>.\Release/FreeImage.pch</PrecompiledHeaderOutputFile>
-      <AssemblerListingLocation>.\Release/</AssemblerListingLocation>
-      <ObjectFileName>.\Release/</ObjectFileName>
-      <ProgramDataBaseFileName>.\Release/</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <CompileAs>Default</CompileAs>
+      <UseUnicodeForAssemblerListing>false</UseUnicodeForAssemblerListing>
+      <StructMemberAlignment>16Bytes</StructMemberAlignment>
+      <DebugInformationFormat>None</DebugInformationFormat>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <Culture>0x0409</Culture>
     </ResourceCompile>
     <Link>
-      <OutputFile>.\Release/FreeImage.dll</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
-      <ProgramDatabaseFile>.\Release/FreeImage.pdb</ProgramDatabaseFile>
       <LinkTimeCodeGeneration>UseLinkTimeCodeGeneration</LinkTimeCodeGeneration>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
       <DataExecutionPrevention />
-      <ImportLibrary>.\Release/FreeImage.lib</ImportLibrary>
       <TargetMachine>MachineX64</TargetMachine>
       <Profile>true</Profile>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <IgnoreEmbeddedIDL>true</IgnoreEmbeddedIDL>
+      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies />
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
     </Link>
     <PostBuildEvent>
-      <Command>copy Release\FreeImage.dll Dist
-copy Release\FreeImage.lib Dist
-copy Source\FreeImage.h Dist
+      <Command>mkdir Dist\x64
+copy $(OutDir)$(TargetName).dll Dist\x64
+copy $(OutDir)$(TargetName).lib Dist\x64
+copy Source\FreeImage.h Dist\x64
 </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
@@ -200,43 +210,44 @@ copy Source\FreeImage.h Dist
       <MkTypLibCompatible>true</MkTypLibCompatible>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <TargetEnvironment>Win32</TargetEnvironment>
-      <TypeLibraryName>.\Debug/FreeImage.tlb</TypeLibraryName>
+      <TypeLibraryName>$(OutDir)FreeImage.tlb</TypeLibraryName>
       <HeaderFileName />
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>Source;Source\ZLib;Source\DeprecationManager;Source\OpenEXR\Half;Source\OpenEXR\Iex;Source\OpenEXR\IlmImf;Source\OpenEXR\Imath;Source\OpenEXR\IlmThread;Source\LibJXR\jxrgluelib;Source\LibJXR\image\sys;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>Source;Source\ZLib;Source\DeprecationManager;Source\OpenEXR;Source\OpenEXR\Half;Source\OpenEXR\Iex;Source\OpenEXR\IlmImf;Source\OpenEXR\Imath;Source\OpenEXR\IlmThread;Source\LibJXR\jxrgluelib;Source\LibJXR\image\sys;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;OPJ_STATIC;FREEIMAGE_EXPORTS;_CRT_SECURE_NO_DEPRECATE;LIBRAW_NODLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-      <PrecompiledHeaderOutputFile>.\Debug/FreeImage.pch</PrecompiledHeaderOutputFile>
-      <AssemblerListingLocation>.\Debug/</AssemblerListingLocation>
-      <ObjectFileName>.\Debug/</ObjectFileName>
-      <ProgramDataBaseFileName>.\Debug/</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <CompileAs>Default</CompileAs>
+      <UseUnicodeForAssemblerListing>false</UseUnicodeForAssemblerListing>
+      <StructMemberAlignment>16Bytes</StructMemberAlignment>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <Culture>0x0409</Culture>
     </ResourceCompile>
     <Link>
-      <OutputFile>Debug/FreeImaged.dll</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <ProgramDatabaseFile>.\Debug/FreeImaged.pdb</ProgramDatabaseFile>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
       <DataExecutionPrevention />
-      <ImportLibrary>.\Debug/FreeImaged.lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
+      <IgnoreEmbeddedIDL>true</IgnoreEmbeddedIDL>
+      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies />
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
     </Link>
     <PostBuildEvent>
-      <Command>copy Debug\FreeImaged.dll Dist
-copy Debug\FreeImaged.lib Dist
-copy Source\FreeImage.h Dist
+      <Command>mkdir Dist\x32
+copy $(OutDir)$(TargetName).dll Dist\x32
+copy $(OutDir)$(TargetName).lib Dist\x32
+copy Source\FreeImage.h Dist\x32
 </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
@@ -246,88 +257,62 @@ copy Source\FreeImage.h Dist
       <MkTypLibCompatible>true</MkTypLibCompatible>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <TargetEnvironment>X64</TargetEnvironment>
-      <TypeLibraryName>.\Debug/FreeImage.tlb</TypeLibraryName>
+      <TypeLibraryName>$(OutDir)FreeImage.tlb</TypeLibraryName>
       <HeaderFileName />
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>Source;Source\ZLib;Source\DeprecationManager;Source\OpenEXR\Half;Source\OpenEXR\Iex;Source\OpenEXR\IlmImf;Source\OpenEXR\Imath;Source\OpenEXR\IlmThread;Source\LibJXR\jxrgluelib;Source\LibJXR\image\sys;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>Source;Source\ZLib;Source\DeprecationManager;Source\OpenEXR;Source\OpenEXR\Half;Source\OpenEXR\Iex;Source\OpenEXR\IlmImf;Source\OpenEXR\Imath;Source\OpenEXR\IlmThread;Source\LibJXR\jxrgluelib;Source\LibJXR\image\sys;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;OPJ_STATIC;FREEIMAGE_EXPORTS;_CRT_SECURE_NO_DEPRECATE;LIBRAW_NODLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <OpenMPSupport>true</OpenMPSupport>
-      <PrecompiledHeaderOutputFile>.\Debug/FreeImage.pch</PrecompiledHeaderOutputFile>
-      <AssemblerListingLocation>.\Debug/</AssemblerListingLocation>
-      <ObjectFileName>.\Debug/</ObjectFileName>
-      <ProgramDataBaseFileName>.\Debug/</ProgramDataBaseFileName>
       <WarningLevel>Level3</WarningLevel>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <CompileAs>Default</CompileAs>
+      <UseUnicodeForAssemblerListing>false</UseUnicodeForAssemblerListing>
+      <StructMemberAlignment>16Bytes</StructMemberAlignment>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <Culture>0x0409</Culture>
     </ResourceCompile>
     <Link>
-      <OutputFile>Debug/FreeImaged.dll</OutputFile>
       <SuppressStartupBanner>true</SuppressStartupBanner>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <ProgramDatabaseFile>.\Debug/FreeImaged.pdb</ProgramDatabaseFile>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
       <DataExecutionPrevention />
-      <ImportLibrary>.\Debug/FreeImaged.lib</ImportLibrary>
       <TargetMachine>MachineX64</TargetMachine>
+      <IgnoreEmbeddedIDL>true</IgnoreEmbeddedIDL>
+      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies />
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
     </Link>
     <PostBuildEvent>
-      <Command>copy Debug\FreeImaged.dll Dist
-copy Debug\FreeImaged.lib Dist
-copy Source\FreeImage.h Dist
+      <Command>mkdir Dist\x64
+copy $(OutDir)$(TargetName).dll Dist\x64
+copy $(OutDir)$(TargetName).lib Dist\x64
+copy Source\FreeImage.h Dist\x64
 </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Source\DeprecationManager\Deprecated.cpp" />
-    <ClCompile Include="Source\DeprecationManager\DeprecationMgr.cpp" />
-    <ClCompile Include="Source\FreeImageToolkit\Background.cpp" />
-    <ClCompile Include="Source\FreeImageToolkit\BSplineRotate.cpp" />
-    <ClCompile Include="Source\FreeImageToolkit\Channels.cpp" />
-    <ClCompile Include="Source\FreeImageToolkit\ClassicRotate.cpp" />
-    <ClCompile Include="Source\FreeImageToolkit\Colors.cpp" />
-    <ClCompile Include="Source\FreeImageToolkit\CopyPaste.cpp" />
-    <ClCompile Include="Source\FreeImageToolkit\Display.cpp" />
-    <ClCompile Include="Source\FreeImageToolkit\Flip.cpp" />
-    <ClCompile Include="Source\FreeImageToolkit\JPEGTransform.cpp" />
-    <ClCompile Include="Source\FreeImageToolkit\MultigridPoissonSolver.cpp" />
-    <ClCompile Include="Source\FreeImageToolkit\Rescale.cpp" />
-    <ClCompile Include="Source\FreeImageToolkit\Resize.cpp" />
     <ClCompile Include="Source\FreeImage\BitmapAccess.cpp" />
-    <ClCompile Include="Source\FreeImage\CacheFile.cpp" />
     <ClCompile Include="Source\FreeImage\ColorLookup.cpp" />
-    <ClCompile Include="Source\FreeImage\Conversion.cpp" />
-    <ClCompile Include="Source\FreeImage\Conversion16_555.cpp" />
-    <ClCompile Include="Source\FreeImage\Conversion16_565.cpp" />
-    <ClCompile Include="Source\FreeImage\Conversion24.cpp" />
-    <ClCompile Include="Source\FreeImage\Conversion32.cpp" />
-    <ClCompile Include="Source\FreeImage\Conversion4.cpp" />
-    <ClCompile Include="Source\FreeImage\Conversion8.cpp" />
-    <ClCompile Include="Source\FreeImage\ConversionFloat.cpp" />
-    <ClCompile Include="Source\FreeImage\ConversionRGB16.cpp" />
-    <ClCompile Include="Source\FreeImage\ConversionRGBF.cpp" />
-    <ClCompile Include="Source\FreeImage\ConversionType.cpp" />
-    <ClCompile Include="Source\FreeImage\ConversionUINT16.cpp" />
+    <ClCompile Include="Source\FreeImage\ConversionRGBA16.cpp" />
+    <ClCompile Include="Source\FreeImage\ConversionRGBAF.cpp" />
     <ClCompile Include="Source\FreeImage\FreeImage.cpp" />
     <ClCompile Include="Source\FreeImage\FreeImageC.c" />
     <ClCompile Include="Source\FreeImage\FreeImageIO.cpp" />
     <ClCompile Include="Source\FreeImage\GetType.cpp" />
-    <ClCompile Include="Source\FreeImage\Halftoning.cpp" />
-    <ClCompile Include="Source\FreeImage\J2KHelper.cpp" />
+    <ClCompile Include="Source\FreeImage\LFPQuantizer.cpp" />
     <ClCompile Include="Source\FreeImage\MemoryIO.cpp" />
-    <ClCompile Include="Source\FreeImage\MNGHelper.cpp" />
-    <ClCompile Include="Source\FreeImage\MultiPage.cpp" />
-    <ClCompile Include="Source\FreeImage\NNQuantizer.cpp" />
     <ClCompile Include="Source\FreeImage\PixelAccess.cpp" />
+    <ClCompile Include="Source\FreeImage\J2KHelper.cpp" />
+    <ClCompile Include="Source\FreeImage\MNGHelper.cpp" />
     <ClCompile Include="Source\FreeImage\Plugin.cpp" />
     <ClCompile Include="Source\FreeImage\PluginBMP.cpp" />
     <ClCompile Include="Source\FreeImage\PluginCUT.cpp" />
@@ -363,12 +348,30 @@ copy Source\FreeImage.h Dist
     <ClCompile Include="Source\FreeImage\PluginXPM.cpp" />
     <ClCompile Include="Source\FreeImage\PSDParser.cpp" />
     <ClCompile Include="Source\FreeImage\TIFFLogLuv.cpp" />
+    <ClCompile Include="Source\FreeImage\Conversion.cpp" />
+    <ClCompile Include="Source\FreeImage\Conversion16_555.cpp" />
+    <ClCompile Include="Source\FreeImage\Conversion16_565.cpp" />
+    <ClCompile Include="Source\FreeImage\Conversion24.cpp" />
+    <ClCompile Include="Source\FreeImage\Conversion32.cpp" />
+    <ClCompile Include="Source\FreeImage\Conversion4.cpp" />
+    <ClCompile Include="Source\FreeImage\Conversion8.cpp" />
+    <ClCompile Include="Source\FreeImage\ConversionFloat.cpp" />
+    <ClCompile Include="Source\FreeImage\ConversionRGB16.cpp" />
+    <ClCompile Include="Source\FreeImage\ConversionRGBF.cpp" />
+    <ClCompile Include="Source\FreeImage\ConversionType.cpp" />
+    <ClCompile Include="Source\FreeImage\ConversionUINT16.cpp" />
+    <ClCompile Include="Source\FreeImage\Halftoning.cpp" />
     <ClCompile Include="Source\FreeImage\tmoColorConvert.cpp" />
     <ClCompile Include="Source\FreeImage\tmoDrago03.cpp" />
     <ClCompile Include="Source\FreeImage\tmoFattal02.cpp" />
     <ClCompile Include="Source\FreeImage\tmoReinhard05.cpp" />
     <ClCompile Include="Source\FreeImage\ToneMapping.cpp" />
+    <ClCompile Include="Source\FreeImage\NNQuantizer.cpp" />
     <ClCompile Include="Source\FreeImage\WuQuantizer.cpp" />
+    <ClCompile Include="Source\DeprecationManager\Deprecated.cpp" />
+    <ClCompile Include="Source\DeprecationManager\DeprecationMgr.cpp" />
+    <ClCompile Include="Source\FreeImage\CacheFile.cpp" />
+    <ClCompile Include="Source\FreeImage\MultiPage.cpp" />
     <ClCompile Include="Source\FreeImage\ZLibInterface.cpp" />
     <ClCompile Include="Source\Metadata\Exif.cpp" />
     <ClCompile Include="Source\Metadata\FIRational.cpp" />
@@ -377,6 +380,18 @@ copy Source\FreeImage.h Dist
     <ClCompile Include="Source\Metadata\TagConversion.cpp" />
     <ClCompile Include="Source\Metadata\TagLib.cpp" />
     <ClCompile Include="Source\Metadata\XTIFF.cpp" />
+    <ClCompile Include="Source\FreeImageToolkit\Background.cpp" />
+    <ClCompile Include="Source\FreeImageToolkit\BSplineRotate.cpp" />
+    <ClCompile Include="Source\FreeImageToolkit\Channels.cpp" />
+    <ClCompile Include="Source\FreeImageToolkit\ClassicRotate.cpp" />
+    <ClCompile Include="Source\FreeImageToolkit\Colors.cpp" />
+    <ClCompile Include="Source\FreeImageToolkit\CopyPaste.cpp" />
+    <ClCompile Include="Source\FreeImageToolkit\Display.cpp" />
+    <ClCompile Include="Source\FreeImageToolkit\Flip.cpp" />
+    <ClCompile Include="Source\FreeImageToolkit\JPEGTransform.cpp" />
+    <ClCompile Include="Source\FreeImageToolkit\MultigridPoissonSolver.cpp" />
+    <ClCompile Include="Source\FreeImageToolkit\Rescale.cpp" />
+    <ClCompile Include="Source\FreeImageToolkit\Resize.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="FreeImage.rc" />
@@ -384,17 +399,18 @@ copy Source\FreeImage.h Dist
   <ItemGroup>
     <ClInclude Include="Source\CacheFile.h" />
     <ClInclude Include="Source\DeprecationManager\DeprecationMgr.h" />
+    <ClInclude Include="Source\MapIntrospector.h" />
+    <ClInclude Include="Source\Metadata\FIRational.h" />
     <ClInclude Include="Source\FreeImage.h" />
     <ClInclude Include="Source\FreeImageIO.h" />
-    <ClInclude Include="Source\FreeImageToolkit\Resize.h" />
-    <ClInclude Include="Source\FreeImage\J2KHelper.h" />
-    <ClInclude Include="Source\FreeImage\PSDParser.h" />
-    <ClInclude Include="Source\Metadata\FIRational.h" />
     <ClInclude Include="Source\Metadata\FreeImageTag.h" />
+    <ClInclude Include="Source\FreeImage\J2KHelper.h" />
     <ClInclude Include="Source\Plugin.h" />
+    <ClInclude Include="Source\FreeImage\PSDParser.h" />
     <ClInclude Include="Source\Quantizers.h" />
     <ClInclude Include="Source\ToneMapping.h" />
     <ClInclude Include="Source\Utilities.h" />
+    <ClInclude Include="Source\FreeImageToolkit\Resize.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="Todo.txt" />
