@@ -1,3 +1,4 @@
+extern void swab(char *from, char*to, int length);
 /* -*- C++ -*-
  * File: libraw_cxx.cpp
  * Copyright 2008-2013 LibRaw LLC (info@libraw.org)

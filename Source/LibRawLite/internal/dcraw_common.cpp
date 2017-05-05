@@ -1,3 +1,13 @@
+void swab(char *from, char *to, int length) 
+{ 
+  int ptr; 
+  for (ptr = 1; ptr < length; ptr +=2) { 
+    char p = from[ptr]; 
+    char q = from[ptr - 1]; 
+    to[ptr - 1] = p; 
+    to[ptr] = q; 
+  } 
+}
 /* 
   Copyright 2008-2013 LibRaw LLC (info@libraw.org)
 

@@ -14,7 +14,7 @@
 #include "./dsp.h"
 
 #if defined(__ANDROID__)
-#include <cpu-features.h>
+#
 #endif
 
 //------------------------------------------------------------------------------

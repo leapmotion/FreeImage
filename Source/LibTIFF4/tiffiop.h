@@ -51,7 +51,7 @@
 #endif
 
 #ifdef HAVE_SEARCH_H
-# include <search.h>
+# 
 #else
 extern void *lfind(const void *, const void *, size_t *, size_t,
 		   int (*)(const void *, const void *));
