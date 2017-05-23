@@ -15,6 +15,7 @@
 
 #if defined(__ANDROID__)
 #include <cpu-features.h>
+#include <cpu-features.c>
 #endif
 
 //------------------------------------------------------------------------------

@@ -1,4 +1,4 @@
-/* 
+/*
   Copyright 2008-2013 LibRaw LLC (info@libraw.org)
 
 LibRaw is free software; you can redistribute it and/or modify
@@ -29,6 +29,20 @@ it under the terms of the one of three licenses as you choose:
 #include "libraw/libraw.h"
 #include "internal/defines.h"
 #include "internal/var_defines.h"
+
+#if defined(__ANDROID__)
+void swab(char *from, char *to, int length)
+{
+  int ptr;
+  for (ptr = 1; ptr < length; ptr +=2) {
+    char p = from[ptr];
+    char q = from[ptr - 1];
+    to[ptr - 1] = p;
+    to[ptr] = q;
+  }
+}
+#endif
+
 int CLASS fcol (int row, int col)
 {
   static const char filter[16][16] =
